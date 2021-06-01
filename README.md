@@ -13,7 +13,7 @@ As aulas estão organizadas em pastas, e, em cada pasta, haverá um link para ac
 
 1. Apresentação da disciplina e setup do ambiente;
 2.  [Representação de imagens, quantização, sistemas de cores, conversão colorido-escala de cinza](2_representacao);
-3.  Histogramas;
+3.  [Histogramas](3_histogramas);
 4.  Filtragem espacial *(pt. 1)*;
 5.  Filtragem espacial *(pt. 2)*;
 6.  Gradientes de imagens;
