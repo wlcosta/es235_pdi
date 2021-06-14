@@ -35,31 +35,13 @@ def main():
         if return_code == sim.simx_return_ok:
             # Load image
             frame = load_image(image, resolution)
-        
-            ########## TODO
-            image_height, image_width, _ = frame.shape
-            cv2.line(frame, (image_width//2, image_height), (image_width//2, 0), (0,0,255), 3)
+            ##########
 
-            ret, thresh = cv2.threshold(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), 10, 255, cv2.THRESH_BINARY_INV)
-            contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-            if len(contours) != 0:
-                cnt = contours[0]
-                M = cv2.moments(cnt)
-                if M['m00'] != 0:
-                    cx = int(M['m10']/M['m00'])
-                    cy = int(M['m01']/M['m00'])
-                    error = int(cx - image_width//2)
-                    cv2.putText(frame, str(error), (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-                    if error > 50:
-                        left_motor = 1
-                    elif abs(error) < 50:
-                        speed = 2
-                    else:
 
-            ############
-            sim.simxSetJointTargetVelocity(clientID, left_motor, 0.2, sim.simx_opmode_streaming)
-            sim.simxSetJointTargetVelocity(clientID, right_motor, 0.2, sim.simx_opmode_streaming);	
+            ##########
+            sim.simxSetJointTargetVelocity(clientID, left_motor, -1, sim.simx_opmode_streaming)
+            sim.simxSetJointTargetVelocity(clientID, right_motor, 1, sim.simx_opmode_streaming)
             cv2.imshow('Robot camera', frame)	
             if cv2.waitKey(1) & 0xFF == 27:
                 cv2.destroyAllWindows()

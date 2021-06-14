@@ -37,9 +37,11 @@ def main():
             frame = load_image(image, resolution)
             ##########
 
+
+
             ##########
-            sim.simxSetJointTargetVelocity(clientID, left_motor, 0.2, sim.simx_opmode_streaming)
-            sim.simxSetJointTargetVelocity(clientID, right_motor, 0.2, sim.simx_opmode_streaming);	
+            sim.simxSetJointTargetVelocity(clientID, left_motor, -1, sim.simx_opmode_streaming)
+            sim.simxSetJointTargetVelocity(clientID, right_motor, 1, sim.simx_opmode_streaming)
             cv2.imshow('Robot camera', frame)	
             if cv2.waitKey(1) & 0xFF == 27:
                 cv2.destroyAllWindows()
