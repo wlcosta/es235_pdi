@@ -1,37 +1,17 @@
 # Image Inpainting
 
-
 ## Usage
 
 ### Python
 
 ```
-python3 inpaint.py sample.jpeg
+python3 inpaint.py <input_image>
 ```
 
-### C++
+Quando o programa estiver rodando, utilize um das seguintes opções:
 
 ```
-g++ inpaint.cpp `pkg-config opencv --cflags --libs` -o inpaint
-./inpaint sample.jpeg
-```
-You can also **cmake** as follows:
-
-```
-mkdir build && cd build
-cmake ..
-cmake --build . --config Release
-```
-
-The built code can then be used as follows:
-
-```
-./build/inpaint sample.jpeg
-```
-
-## Performance Comparison
-
-```
-Time: FMM = 194445.94073295593 ms
-Time: NS = 179731.82344436646 ms
+t - Fast Marching Method
+n - Navier-Stokes
+r - Reset
 ```
