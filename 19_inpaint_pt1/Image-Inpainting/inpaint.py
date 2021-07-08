@@ -27,7 +27,7 @@ class Sketcher:
 
         if self.prev_pt and flags & cv.EVENT_FLAG_LBUTTON:
             for dst, color in zip(self.dests, self.colors_func()):
-                cv.line(dst, self.prev_pt, pt, color, 5)
+                cv.line(dst, self.prev_pt, pt, color, 25)
             self.dirty = True
             self.prev_pt = pt
             self.show()
@@ -70,6 +70,7 @@ def main():
         if ch == ord('n'):
             # Use Algorithm proposed by Bertalmio, Marcelo, Andrea L. Bertozzi, and Guillermo Sapiro: Navier-Stokes, Fluid Dynamics, and Image and Video Inpainting (2001)
             res = cv.inpaint(src=img_mask, inpaintMask=inpaintMask, inpaintRadius=3, flags=cv.INPAINT_NS)
+            cv.imwrite('1_mask.jpg', img_mask)
             cv.imshow('Inpaint Output using NS Technique', res)
         if ch == ord('r'):
             img_mask[:] = img
@@ -81,4 +82,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+    mask = cv.imread('1_mask.jpg', 0)
+    _, mask = cv.threshold(mask, 250, 255, cv.THRESH_BINARY)
+    mask = cv.erode(mask, 5)
+    cv.imshow('mask', mask)
+    cv.waitKey()
     cv.destroyAllWindows()
